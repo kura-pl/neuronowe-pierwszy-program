@@ -3,9 +3,19 @@ let parseToJSON = () => JSON.parse(fs.readFileSync('examples.json', 'utf-8'))
 
 exports.getJSONWithExamples = parseToJSON()
 
-exports.appendToJSON = (example_hash) => {
+exports.appendToJSON = (E, P) => {
+  //E -- przykład, P -- perceptron dla którego dla E T == 1
   currentJSON = parseToJSON()
-  currentJSON.push(example_hash)
-  console.log(currentJSON)
+  for(let indx of currentJSON.keys()){
+    if (indx == P)
+      currentJSON[indx].push({"E":E, "T":true})
+    else {
+      currentJSON[indx].push({"E":E, "T":false})
+    }
+  }
   fs.writeFileSync('examples.json', JSON.stringify(currentJSON))
+}
+
+exports.getRandomWages = function(sizeOfArray){
+  return Array.from({length: sizeOfArray}, () => Math.floor(Math.random() * 9))
 }

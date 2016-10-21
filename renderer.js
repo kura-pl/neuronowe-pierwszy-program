@@ -15,7 +15,7 @@ var createButtons = () => {
 
 var createDigitControls = () => {
   for (digit of Array(10).keys()){
-    $('.digit-buttons').append(`<button class=digit-"${digit}"> ${digit}</button>`)
+    $('.digit-buttons').append(`<button class="digit-${digit}"> ${digit}</button>`)
   }
 }
 
@@ -54,4 +54,17 @@ $(() => {
       }
     }
   })
+  $('.digit-buttons > button').on('click', function(e) {
+    if ($(this).hasClass('selected-digit'))
+      $(this).removeClass('selected-digit')
+    else
+      $(this).addClass('selected-digit')
+  })
+  $('.add-current-example').on('click', (e) => {
+    logic.updateFile()
+  })
+  $('.learn').on('click', (e) => {
+    logic.learn()
+  })
+
 })
