@@ -20,7 +20,7 @@ td {
   margin: 5px;
 }
 
-body {
+body, .example-browser {
   display: flex;
   align-items: center;
   justify-content: center;

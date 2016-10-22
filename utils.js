@@ -1,7 +1,7 @@
 fs = require('fs')
 let parseToJSON = () => JSON.parse(fs.readFileSync('examples.json', 'utf-8'))
 
-exports.getJSONWithExamples = parseToJSON()
+exports.getJSONWithExamples = () => parseToJSON()
 
 exports.appendToJSON = (E, P) => {
   //E -- przykład, P -- perceptron dla którego dla E T == 1

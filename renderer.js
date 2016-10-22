@@ -66,5 +66,11 @@ $(() => {
   $('.learn').on('click', (e) => {
     logic.learn()
   })
+  $('.show-next-example').on('click', (e) => {
+    logic.nextExample()
+  })
+  $('.delete-example').on('click', (e) => {
+    logic.deleteExample()
+  })
 
 })
