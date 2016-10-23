@@ -51,15 +51,34 @@ exports.deleteExample = () => {
   exports.nextExample()
 }
 exports.getNumber = () => {
+  if(global.superWages == undefined){
+    alert('Nie nauczyłem się jeszcze')
+  }
   let tmp = $.map($('td', '.table-div'), (x) => $(x).hasClass('keyed') ? 1 : -1)
   let E = [1, ...tmp]
+  let foundNumbers = []
   for(let indx of Array(10).keys()){
     let wages = global.superWages[indx]
     let threshold = wages[0] * -1
     if (calculations.activatingFunction(E, wages, threshold) == 1){
-      console.log(indx)
+      foundNumbers.push(indx)
     }
   }
+
+  $('.digit-buttons > button').removeClass('selected-digit')
+
+  for(let numb of foundNumbers){
+    $(`.digit-${numb}`).addClass('selected-digit')
+  }
+
+  if (!foundNumbers.length)
+    alert('Nie udało dopasować sie żadnej liczby')
+  else if(foundNumbers.length == 1)
+    alert('Cyfra to ' + foundNumbers[0])
+  else
+    alert('Możliwe cyfry to' + foundNumbers.join(' lub '))
+
+
 }
 
 
@@ -73,7 +92,7 @@ exports.learn = () => {
   for(let indx of Array(10).keys()){
     global.superWages.push(singlePerceptronLearn(indx, wages, thresholds, longestLifes, pocketWages))
   }
-  alert('Nauczyłem się :3')
+  alert('Nauczyłem się !')
 }
 
 let singlePerceptronLearn = (perceptronIndx, wages, thresholds, longestLifes, pocketWages ) => {

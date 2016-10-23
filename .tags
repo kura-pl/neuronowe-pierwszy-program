@@ -9,9 +9,9 @@ dependencies	package.json	/^  "dependencies": {$/;"	f
 description	package.json	/^  "description": "A minimal Electron application",$/;"	f
 devDependencies	package.json	/^  "devDependencies": {$/;"	f
 electron	package.json	/^    "electron": "^1.4.1"$/;"	f
-exports.getRandomWages	utils.js	/^}$/;"	f
 jquery	package.json	/^    "jquery": "^3.1.1"$/;"	f
 keywords	package.json	/^  "keywords": [$/;"	f
+let	calculations.js	/^}$/;"	f
 license	package.json	/^  "license": "CC0-1.0",$/;"	f
 main	package.json	/^  "main": "main.js",$/;"	f
 name	package.json	/^  "name": "electron-quick-start",$/;"	f
