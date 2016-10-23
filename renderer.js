@@ -72,5 +72,8 @@ $(() => {
   $('.delete-example').on('click', (e) => {
     logic.deleteExample()
   })
+  $('.recognize').on('click', (e)=>{
+    logic.getNumber()
+  })
 
 })

@@ -15,7 +15,3 @@ exports.appendToJSON = (E, P) => {
   }
   fs.writeFileSync('examples.json', JSON.stringify(currentJSON))
 }
-
-exports.getRandomWages = function(sizeOfArray){
-  return Array.from({length: sizeOfArray}, () => Math.floor(Math.random() * 9))
-}
