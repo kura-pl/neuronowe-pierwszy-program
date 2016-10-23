@@ -5,7 +5,7 @@ exports.updateFile = () => {
   let E = $.map($('td', '.table-div'), (x) => $(x).hasClass('keyed') ? 1 : -1)
   let P = $('button.selected-digit').text()
   if(P == null || P == undefined || P == ''){
-    alert('Jaka to cyfra?')
+    swal('Jaka to cyfra?')
   } else {
     utils.appendToJSON(E, P)
   }
@@ -52,7 +52,7 @@ exports.deleteExample = () => {
 }
 exports.getNumber = () => {
   if(global.superWages == undefined){
-    alert('Nie nauczyłem się jeszcze')
+    swal('Nie nauczyłem się jeszcze')
   }
   let tmp = $.map($('td', '.table-div'), (x) => $(x).hasClass('keyed') ? 1 : -1)
   let E = [1, ...tmp]
@@ -72,11 +72,11 @@ exports.getNumber = () => {
   }
 
   if (!foundNumbers.length)
-    alert('Nie udało dopasować sie żadnej liczby')
+    swal('Nie udało dopasować sie żadnej liczby')
   else if(foundNumbers.length == 1)
-    alert('Cyfra to ' + foundNumbers[0])
+    swal('Cyfra to ' + foundNumbers[0])
   else
-    alert('Możliwe cyfry to' + foundNumbers.join(' lub '))
+    swal('Możliwe cyfry to' + foundNumbers.join(' lub '))
 
 
 }
@@ -92,7 +92,7 @@ exports.learn = () => {
   for(let indx of Array(10).keys()){
     global.superWages.push(singlePerceptronLearn(indx, wages, thresholds, longestLifes, pocketWages))
   }
-  alert('Nauczyłem się !')
+  swal('Nauczyłem się !')
 }
 
 let singlePerceptronLearn = (perceptronIndx, wages, thresholds, longestLifes, pocketWages ) => {

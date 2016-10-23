@@ -9,7 +9,7 @@ dependencies	package.json	/^  "dependencies": {$/;"	f
 description	package.json	/^  "description": "A minimal Electron application",$/;"	f
 devDependencies	package.json	/^  "devDependencies": {$/;"	f
 electron	package.json	/^    "electron": "^1.4.1"$/;"	f
-jquery	package.json	/^    "jquery": "^3.1.1"$/;"	f
+jquery	package.json	/^    "jquery": "^3.1.1",$/;"	f
 keywords	package.json	/^  "keywords": [$/;"	f
 let	calculations.js	/^}$/;"	f
 license	package.json	/^  "license": "CC0-1.0",$/;"	f
@@ -18,4 +18,5 @@ name	package.json	/^  "name": "electron-quick-start",$/;"	f
 repository	package.json	/^  "repository": "https:\/\/github.com\/electron\/electron-quick-start",$/;"	f
 scripts	package.json	/^  "scripts": {$/;"	f
 start	package.json	/^    "start": "electron ."$/;"	f
+sweetalert	package.json	/^    "sweetalert": "^1.1.3"$/;"	f
 version	package.json	/^  "version": "1.0.0",$/;"	f
