@@ -6,21 +6,21 @@ let sumOfMultiplications = (arr0, arr1) => {  // obliczanie sumy kolejnej wagi *
   return summed
 }
 
-exports.activatingFunction = (inputArr, wages, threshold) => {  //funkcja aktywujaca znakowa
-  // console.log(sumOfMultiplications(inputArr, wages) >= threshold ? 1 : -1)
-  return (sumOfMultiplications(inputArr, wages) >= threshold ? 1 : -1)
+exports.activatingFunction = (inputArr, weights, threshold) => {  //funkcja aktywujaca znakowa
+  // console.log(sumOfMultiplications(inputArr, weights) >= threshold ? 1 : -1)
+  return (sumOfMultiplications(inputArr, weights) >= threshold ? 1 : -1)
 }
 
-exports.anyErrors = (inputArr, wages, threshold, T) => { //Obliczanie ERR
-  return T - exports.activatingFunction(inputArr, wages, threshold) // 0 rzutowane jest do false
+exports.anyErrors = (inputArr, weights, threshold, T) => { //Obliczanie ERR
+  return T - exports.activatingFunction(inputArr, weights, threshold) // 0 rzutowane jest do false
 }
 
-exports.fixWages = (inputArr, wages, err) => {
-  let new_wages = []
-  for(let indx of wages.keys()){
-    new_wages[indx] = wages[indx] + 0.5 * err * inputArr[indx] //0.5 -- stała uczenia
+exports.fixWeights = (inputArr, weights, err) => {
+  let new_weights = []
+  for(let indx of weights.keys()){
+    new_weights[indx] = weights[indx] + 0.5 * err * inputArr[indx] //0.5 -- stała uczenia
   }
-  return new_wages
+  return new_weights
 }
 
 exports.fixThreshold = (threshold, err) => {
@@ -32,18 +32,18 @@ exports.getThreshold = () => {
   return parseFloat(((Math.random() / 2).toFixed(2))) * multiplicator
 }
 
-let getRandomWages = function(sizeOfArray){
+let getRandomWeights = function(sizeOfArray){
   return Array.from({length: sizeOfArray}, () => {
     let multiplicator = Math.random() >= 0.5 ? 1 : -1
     return parseFloat(Math.random().toFixed(2)) * multiplicator
   })
 }
 
-exports.createWages = (thresholds) => {
-  let wages = []
-  let tmpWages = Array(10).fill(1).map((x) => getRandomWages(42))
-  for(let indx of tmpWages.keys()){
-    wages.push([-1 * thresholds[indx], ...tmpWages[indx]])
+exports.createWeights = (thresholds) => {
+  let weights = []
+  let tmpWeights = Array(10).fill(1).map((x) => getRandomWeights(42))
+  for(let indx of tmpWeights.keys()){
+    weights.push([-1 * thresholds[indx], ...tmpWeights[indx]])
   }
-  return wages
+  return weights
 }

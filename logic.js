@@ -51,16 +51,16 @@ exports.deleteExample = () => {
   exports.nextExample()
 }
 exports.getNumber = () => {
-  if(global.superWages == undefined){
+  if(global.superWeights == undefined){
     swal('Nie nauczyłem się jeszcze')
   }
   let tmp = $.map($('td', '.table-div'), (x) => $(x).hasClass('keyed') ? 1 : -1)
   let E = [1, ...tmp]
   let foundNumbers = []
   for(let indx of Array(10).keys()){
-    let wages = global.superWages[indx]
-    let threshold = wages[0] * -1
-    if (calculations.activatingFunction(E, wages, threshold) == 1){
+    let weights = global.superWeights[indx]
+    let threshold = weights[0] * -1
+    if (calculations.activatingFunction(E, weights, threshold) == 1){
       foundNumbers.push(indx)
     }
   }
@@ -85,40 +85,40 @@ exports.getNumber = () => {
 //Nauka
 exports.learn = () => {
   let thresholds = Array(10).fill(1).map((x) => calculations.getThreshold())
-  let wages = calculations.createWages(thresholds)
-  let pocketWages = [...wages]
+  let weights = calculations.createWeights(thresholds)
+  let pocketWeights = [...weights]
   let longestLifes = Array(10).fill(0)
-  global.superWages = []
+  global.superWeights = []
   for(let indx of Array(10).keys()){
-    global.superWages.push(singlePerceptronLearn(indx, wages, thresholds, longestLifes, pocketWages))
+    global.superWeights.push(singlePerceptronLearn(indx, weights, thresholds, longestLifes, pocketWeights))
   }
   swal('Nauczyłem się !')
 }
 
-let singlePerceptronLearn = (perceptronIndx, wages, thresholds, longestLifes, pocketWages ) => {
+let singlePerceptronLearn = (perceptronIndx, weights, thresholds, longestLifes, pocketWeights ) => {
   let examples = utils.getJSONWithExamples()[perceptronIndx] //tablica z wszystkimi przykladami danego perceptronu
-  let currentWages = wages[perceptronIndx]
+  let currentWeights = weights[perceptronIndx]
   let currentThreshold = thresholds[perceptronIndx]
   let longestLife = longestLifes[perceptronIndx]
-  let currentPocketWages = pocketWages[perceptronIndx]
+  let currentPocketWeights = pocketWeights[perceptronIndx]
   let currentLifeLength = 0
   for(let draw of Array(1000)){
     let currentExample = examples[Math.floor(Math.random() * examples.length)]
     let E = [1, ...currentExample['E']] // x0 == 1
     let T = currentExample['T'] == true ? 1 : -1
-    let err = calculations.anyErrors(E, currentWages, currentThreshold, T)
+    let err = calculations.anyErrors(E, currentWeights, currentThreshold, T)
     if (err){
       currentLifeLength = 0
-      currentWages = calculations.fixWages(E, currentWages, err)
+      currentWeights = calculations.fixWeights(E, currentWeights, err)
       currentThreshold = calculations.fixThreshold(currentThreshold, err)
     } else {
       currentLifeLength += 1
       if (currentLifeLength > longestLife){
         longestLife = currentLifeLength
-        currentPocketWages = currentWages
+        currentPocketWeights = currentWeights
       }
     }
   }
-  return currentPocketWages
+  return currentPocketWeights
 
 }
